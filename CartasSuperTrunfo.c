@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <math.h>
+
+double pib_per_capita(float pib, int populacao) {
+    return (pib * 1000000000.0) / populacao;
+}
 
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das cartas
@@ -29,7 +34,7 @@ int main()
     scanf(" %c", &estado);
 
     printf("Insira o valor do código da carta: ");
-    scanf("%9s", codigo_da_carta);
+    scanf("%3s", codigo_da_carta);
 
     getchar();
 
@@ -55,7 +60,7 @@ int main()
     scanf(" %c", &estado2);
 
     printf("Insira o valor do código da carta: ");
-    scanf("%9s", codigo_da_carta2);
+    scanf("%3s", codigo_da_carta2);
 
     getchar();
 
@@ -86,6 +91,9 @@ int main()
     printf("Área: %.2f km²\n", area);
     printf("PIB: %.2f bilhões de reais\n", pib);
     printf("Número de Pontos Turísticos: %d\n", numero_de_pontos_turisticos);
+    printf("Densidade Populacional: %.2f hab/km²\n", populacao/(float)area);
+    printf("PIB per Capita: %.2f reais\n", pib_per_capita(pib, populacao));
+
 
     printf("\nCarta 2:\n");
     printf("Estado: %c\n", estado2);
@@ -95,6 +103,12 @@ int main()
     printf("Área: %.2f km²\n", area2);
     printf("PIB: %.2f bilhões de reais\n", pib2);
     printf("Número de Pontos Turísticos: %d\n", numero_de_pontos_turisticos2);
+    printf("Densidade Populacional: %.2f hab/km²\n", populacao2/(float)area2);
+    printf("PIB per Capita: %.2f reais\n", ceil(pib_per_capita(pib2, populacao2)));
+
 
     return 0;
 }
+
+
+
