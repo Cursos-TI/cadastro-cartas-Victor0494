@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <math.h>
+#include <string.h>
 
 double pib_per_capita(float pib, int populacao) {
     return (pib * 1000000000.0) / populacao;
@@ -25,6 +26,7 @@ int main()
     int populacao, populacao2;
     float area, area2;
     float pib, pib2;
+    float densidade_populacional, densidade_populacional2;
     int numero_de_pontos_turisticos, numero_de_pontos_turisticos2;
 
     // Área para entrada de dados
@@ -40,6 +42,7 @@ int main()
 
     printf("Insira o nome da cidade: ");
     fgets(nome_da_cidade, sizeof(nome_da_cidade), stdin);
+    nome_da_cidade[strcspn(nome_da_cidade, "\n")] = '\0'; // código para remover o \n para imprimir corretamente o valor no final
 
     printf("Insira o número de habitantes: ");
     scanf("%d", &populacao);
@@ -66,6 +69,7 @@ int main()
 
     printf("Insira o nome da cidade: ");
     fgets(nome_da_cidade2, sizeof(nome_da_cidade2), stdin);
+    nome_da_cidade2[strcspn(nome_da_cidade2, "\n")] = '\0';// código para remover o \n para imprimir corretamente o valor no final
 
     printf("Insira o número de habitantes: ");
     scanf("%d", &populacao2);
@@ -81,31 +85,48 @@ int main()
 
     printf("\n");
 
+    densidade_populacional = populacao/(float)area;
+
     // Área para exibição dos dados da cidade
 
     printf("Carta 1:\n");
     printf("Estado: %c\n", estado);
     printf("Código: %s\n", codigo_da_carta);
-    printf("Nome da Cidade: %s", nome_da_cidade);
+    printf("Nome da Cidade: %s\n", nome_da_cidade);
     printf("População: %d\n", populacao);
     printf("Área: %.2f km²\n", area);
     printf("PIB: %.2f bilhões de reais\n", pib);
     printf("Número de Pontos Turísticos: %d\n", numero_de_pontos_turisticos);
-    printf("Densidade Populacional: %.2f hab/km²\n", populacao/(float)area);
+    printf("Densidade Populacional: %.2f hab/km²\n", densidade_populacional);
     printf("PIB per Capita: %.2f reais\n", pib_per_capita(pib, populacao));
 
+
+    densidade_populacional2 = populacao2/(float)area2;
 
     printf("\nCarta 2:\n");
     printf("Estado: %c\n", estado2);
     printf("Código: %s\n", codigo_da_carta2);
-    printf("Nome da Cidade: %s", nome_da_cidade2);
+    printf("Nome da Cidade: %s\n", nome_da_cidade2);
     printf("População: %d\n", populacao2);
     printf("Área: %.2f km²\n", area2);
     printf("PIB: %.2f bilhões de reais\n", pib2);
     printf("Número de Pontos Turísticos: %d\n", numero_de_pontos_turisticos2);
-    printf("Densidade Populacional: %.2f hab/km²\n", populacao2/(float)area2);
-    printf("PIB per Capita: %.2f reais\n", ceil(pib_per_capita(pib2, populacao2)));
+    printf("Densidade Populacional: %.2f hab/km²\n", densidade_populacional2);
+    printf("PIB per Capita: %.2f reais\n", ceil(pib_per_capita(pib2, populacao2))); // Utilizacao do ceil para chegar mais próximo do resultado utilizado no exemplo
 
+    printf("\n");
+    printf("Comparação de cartas (Atributo: Densidade Populacional):\n\n");
+
+    printf("Carta 1 - %s (%c): %.2f\n", nome_da_cidade, estado, densidade_populacional);
+    printf("Carta 2 - %s (%c): %.2f\n", nome_da_cidade2, estado2, densidade_populacional2);
+
+    printf("\n");
+
+    if (densidade_populacional < densidade_populacional2) { // Comparacao para definir o vencedor
+        printf("Resultado: Carta 1 (%s) venceu!\n", nome_da_cidade);
+    } else {
+        printf("Resultado: Carta 2 (%s) venceu!\n", nome_da_cidade2);
+    }
 
     return 0;
 }
