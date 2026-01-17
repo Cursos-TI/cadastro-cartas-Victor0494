@@ -63,8 +63,10 @@ void compara_float(
     if (strcmp(atributo, "Densidade demográfica") == 0) {
         if (valor_carta1 < valor_carta2) { 
         printf("Resultado: Carta 1 (%s) venceu!\n", nome1);
-    } else {
+    } else if (valor_carta2 < valor_carta1) {
         printf("Resultado: Carta 2 (%s) venceu!\n", nome2);
+    } else {
+        printf("Resultado: Empate!\n");
     }
     } else {
         if (valor_carta1 > valor_carta2) {
