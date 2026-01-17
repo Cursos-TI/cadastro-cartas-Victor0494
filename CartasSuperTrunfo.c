@@ -59,8 +59,9 @@ void compara_float(
 
     printf("------------------------------------\n");
 
+    // Comparacao para definir o vencedor
     if (strcmp(atributo, "Densidade demográfica") == 0) {
-        if (valor_carta1 < valor_carta2) { // Comparacao para definir o vencedor
+        if (valor_carta1 < valor_carta2) { 
         printf("Resultado: Carta 1 (%s) venceu!\n", nome1);
     } else {
         printf("Resultado: Carta 2 (%s) venceu!\n", nome2);
@@ -184,9 +185,11 @@ int main()
     printf("PIB: %.2f bilhões de reais\n", pib2);
     printf("Número de Pontos Turísticos: %d\n", numero_de_pontos_turisticos2);
     printf("Densidade Populacional: %.2f hab/km²\n", densidade_populacional2);
-    printf("PIB per Capita: %.2f reais\n", ceil(pib_per_capita(pib2, populacao2))); // Utilizacao do ceil para chegar mais próximo do resultado utilizado no exemplo
+    printf("PIB per Capita: %.2f reais\n", pib_per_capita(pib2, populacao2)); // Utilizacao do ceil para chegar mais próximo do resultado utilizado no exemplo
 
     printf("\n");
+
+    //Foi comentado para não poluir o promt para o usuário
     /*printf("Comparação de cartas (Atributo: Densidade Populacional):\n\n");
 
     printf("Carta 1 - %s (%c): %.2f\n", nome_da_cidade, estado, densidade_populacional);
@@ -201,8 +204,9 @@ int main()
     }
     */
 
+    //Menu para o usuário escolher a opcao
     printf("Atributos para comparacao das cartas\n");
-    printf("1 - Nome do país\n");
+    printf("1 - Nome das cidades\n");
     printf("2 - Populacao\n");
     printf("3 - Área\n");
     printf("4 - PIB\n");
@@ -211,6 +215,7 @@ int main()
     printf("Escolha o atributo de comparacao: ");
     scanf("%d", &opcao);
 
+    //Switch para escolher qual atributo será comparado
     switch(opcao) {
         case 1:
             printf("Nome da Cidade: %s\n", nome_da_cidade);
@@ -232,7 +237,7 @@ int main()
             compara_float(nome_da_cidade, nome_da_cidade2, "Densidade demográfica", densidade_populacional, densidade_populacional2);
             break;
         default:
-            printf("Opcao inválida");
+            printf("Opcao inválida\n");
 
     }
 
