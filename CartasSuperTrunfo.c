@@ -8,6 +8,77 @@ double pib_per_capita(float pib, int populacao) {
     return (pib * 1000000000.0) / populacao;
 }
 
+void compara_inteiros(
+    const char *nome1,
+    const char *nome2,
+    const char *atributo,
+    int valor_carta1,
+    int valor_carta2
+) {
+    printf("\n====================================\n");
+    printf("Comparação de Cartas\n");
+    printf("Atributo: %s\n", atributo);
+    printf("====================================\n\n");
+
+    printf("Carta 1 - %s\n", nome1);
+    printf("Valor: %d\n\n", valor_carta1);
+
+    printf("Carta 2 - %s\n", nome2);
+    printf("Valor: %d\n\n", valor_carta2);
+
+    printf("------------------------------------\n");
+
+    if (valor_carta1 > valor_carta2) {
+        printf("Resultado: Carta 1 (%s) venceu!\n", nome1);
+    } else if (valor_carta2 > valor_carta1) {
+        printf("Resultado: Carta 2 (%s) venceu!\n", nome2);
+    } else {
+        printf("Resultado: Empate!\n");
+    }
+
+    printf("------------------------------------\n");
+}
+
+void compara_float(
+    const char *nome1,
+    const char *nome2,
+    const char *atributo,
+    float valor_carta1,
+    float valor_carta2
+) {
+    printf("\n====================================\n");
+    printf("Comparação de Cartas\n");
+    printf("Atributo: %s\n", atributo);
+    printf("====================================\n\n");
+
+    printf("Carta 1 - %s\n", nome1);
+    printf("Valor: %.2f\n\n", valor_carta1);
+
+    printf("Carta 2 - %s\n", nome2);
+    printf("Valor: %.2f\n\n", valor_carta2);
+
+    printf("------------------------------------\n");
+
+    if (strcmp(atributo, "Densidade demográfica") == 0) {
+        if (valor_carta1 < valor_carta2) { // Comparacao para definir o vencedor
+        printf("Resultado: Carta 1 (%s) venceu!\n", nome1);
+    } else {
+        printf("Resultado: Carta 2 (%s) venceu!\n", nome2);
+    }
+    } else {
+        if (valor_carta1 > valor_carta2) {
+            printf("Resultado: Carta 1 (%s) venceu!\n", nome1);
+        } else if (valor_carta2 > valor_carta1) {
+            printf("Resultado: Carta 2 (%s) venceu!\n", nome2);
+        } else {
+            printf("Resultado: Empate!\n");
+        }
+    }
+
+    printf("------------------------------------\n");
+}
+
+
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das cartas
 // Objetivo: No nível novato você deve criar as cartas representando as cidades utilizando scanf para entrada de dados e printf para exibir as informações.
@@ -28,6 +99,7 @@ int main()
     float pib, pib2;
     float densidade_populacional, densidade_populacional2;
     int numero_de_pontos_turisticos, numero_de_pontos_turisticos2;
+    int opcao;
 
     // Área para entrada de dados
 
@@ -115,7 +187,7 @@ int main()
     printf("PIB per Capita: %.2f reais\n", ceil(pib_per_capita(pib2, populacao2))); // Utilizacao do ceil para chegar mais próximo do resultado utilizado no exemplo
 
     printf("\n");
-    printf("Comparação de cartas (Atributo: Densidade Populacional):\n\n");
+    /*printf("Comparação de cartas (Atributo: Densidade Populacional):\n\n");
 
     printf("Carta 1 - %s (%c): %.2f\n", nome_da_cidade, estado, densidade_populacional);
     printf("Carta 2 - %s (%c): %.2f\n", nome_da_cidade2, estado2, densidade_populacional2);
@@ -126,6 +198,42 @@ int main()
         printf("Resultado: Carta 1 (%s) venceu!\n", nome_da_cidade);
     } else {
         printf("Resultado: Carta 2 (%s) venceu!\n", nome_da_cidade2);
+    }
+    */
+
+    printf("Atributos para comparacao das cartas\n");
+    printf("1 - Nome do país\n");
+    printf("2 - Populacao\n");
+    printf("3 - Área\n");
+    printf("4 - PIB\n");
+    printf("5 - Número de pontos turísticos\n");
+    printf("6 - Densidade demográfica\n");
+    printf("Escolha o atributo de comparacao: ");
+    scanf("%d", &opcao);
+
+    switch(opcao) {
+        case 1:
+            printf("Nome da Cidade: %s\n", nome_da_cidade);
+            printf("Nome da Cidade: %s\n", nome_da_cidade2);
+            break;
+        case 2:
+            compara_inteiros(nome_da_cidade, nome_da_cidade2, "População", populacao, populacao2);
+            break;
+        case 3:
+            compara_float(nome_da_cidade, nome_da_cidade2, "Área", area, area2);
+            break;
+        case 4:
+            compara_float(nome_da_cidade, nome_da_cidade2, "PIB", pib, pib2);
+            break;
+        case 5:
+            compara_inteiros(nome_da_cidade, nome_da_cidade2, "Número de pontos turísticos", numero_de_pontos_turisticos, numero_de_pontos_turisticos2);
+            break;
+        case 6:
+            compara_float(nome_da_cidade, nome_da_cidade2, "Densidade demográfica", densidade_populacional, densidade_populacional2);
+            break;
+        default:
+            printf("Opcao inválida");
+
     }
 
     return 0;
